@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Headers Start-->
+<%- include('./head')%>
+    <link rel="stylesheet" href="/sidebar/style.css">
+    <!--Headers End-->
+
+    <body>
+        <!-- Preloader Starts Here -->
+        <%- include('./preloader') %>
+            <!-- Preloader Ends Here -->
+
+            <!-- Main Content Starts Here -->
+            <div class="wrapper d-flex align-items-stretch">
+                <nav id="sidebar">
+                    <div class="custom-menu">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Toggle Menu</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h1><a href="/admin/dashboard" class="logo">Admin Panel</span></a></h1>
+                        <ul class="list-unstyled components mb-5">
+                            <li class="">
+                                <a href="/"><span class="fa fa-home mr-3"></span>হোম</a>
+                            </li>
+                            <li class="<%= path === '/admin/dashboard'? 'active' : '' %>">
+                                <a href="/admin/dashboard"><span class="fas fa-chart-line mr-3"></span>ড্যাশবোর্ড</a>
+                            </li>
+                            <li class="<%= path === '/admin/contacts'? 'active' : '' %>">
+                                <a href="/admin/contacts"><span class="fas fa-address-book mr-3"></span>যোগাযোগসমূহ</a>
+                            </li>
+                            <li class="<%= path === '/admin/notice-list'? 'active' : '' %>">
+                                <a href="/admin/notice-list"><span class="fas fa-file-pdf mr-3"></span>নোটিশ লিস্ট</a>
+                            </li>
+                            <li class="<%= path === '/admin/teachers-list'? 'active' : '' %>">
+                                <a href="/admin/teachers-list"><span
+                                        class="fas fa-chalkboard-teacher mr-3"></span>শিক্ষক লিস্ট</a>
+                            </li>
+                            <li>
+                                <a href="/admin/log-out"><span class="fas fa-sign-out-alt mr-3"></span>লগ-আউট</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Page Content  -->
+                <div id="content" class="p-4 p-md-5 pt-5">

@@ -1,0 +1,106 @@
+<%- include('../includes/sidebar-start') %>
+    <%if (flash) { %>
+        <div class="alert alert-<%= flash.type === 'success' ? 'success' : 'danger' %> raiseFont" role="alert">
+            <%= flash.message %>
+        </div>
+        <% } %>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">অ্যাড নোটিশ</button>
+
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">প্রসঙ্গ</th>
+                        <th scope="col">ডাউনলোড</th>
+                        <th scope="col">অ্যাকশন</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i <notices.length; i++) { const notice=notices[i]%>
+                        <tr>
+                            <th scope="row">
+                                <%=`${notice.createdAt.getDate()}-${notice.createdAt.getMonth() +
+                                    1}-${notice.createdAt.getFullYear()}`%>
+                            </th>
+                            <td>
+                                <%= notice.title %>
+                            </td>
+                            <td>
+                                <a href="/notice/<%= notice.file %>">
+                                    <img src="/images/pdf.png" alt="" style="width: 30px;">
+                                </a>
+
+                            </td>
+                            <td>
+                                <form action="/admin/delete-notice" class="d-inline" method="POST">
+                                    <input type="hidden" name="noticeId" value="<%= notice.id %>">
+                                    <button class="btn btn-warning deleteBtn" type="submit"
+                                        onclick="return showConfirm()"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                                <button type="button" class="btn btn-warning"
+                                    onclick="editNoticeModal('<%= notice.id %>', '<%= notice.title %>')"
+                                    data-toggle="modal" data-target="#editNoticeModal<%= notice.id %>">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <div class="paginationArea">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="/admin/notice-list?page=0">1</a></li>
+                        <% for(let i=1; i <=pageNum; i++) {%>
+                            <li class="page-item"><a class="page-link"
+                                    href="/admin/notice-list?page=<%= i === 0 ? 0 : i %>">
+                                    <%= i +1%>
+                                </a></li>
+                            <% }%>
+                    </ul>
+                </nav>
+            </div>
+
+
+            <!-- Modal Area Starts -->
+
+            <!-- Modal for Add Product -->
+            <div id="modalArea">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">নোটিশ যুক্ত করুন</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form enctype="multipart/form-data" action="/admin/add-notice" method="POST">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">নোটিশ টাইটেল</label>
+                                        <textarea type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="টাইটেল" name="title"
+                                            required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">নোটিশ পিডিএফ যুক্ত করুন</label>
+                                        <input type="file" class="form-control-file" id="exampleInputPassword1"
+                                            placeholder="ফাইল" name="pdf">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">অ্যাড নোটিশ</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Edit a Product -->
+            <div id="modalAreaEdit">
+
+            </div>
+            <!-- Modal Area Ends -->
+            <%- include('../includes/sidebar-end')%>

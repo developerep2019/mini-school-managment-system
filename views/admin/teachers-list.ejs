@@ -1,0 +1,91 @@
+<%- include('../includes/sidebar-start') %>
+    <% if(flash) {%>
+        <div class="alert alert-<%= flash.type === 'success' ? 'success' : 'danger' %> raiseFont" role="alert">
+            <%= flash.message %>
+        </div>
+        <% } %>
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">শিক্ষক যুক্ত
+                করুন</button>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">নাম</th>
+                        <th scope="col">পদবী</th>
+                        <th scope="col">ছবি</th>
+                        <th scope="col">অ্যাকশন</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i <teachers.length; i++) { const teacher=teachers[i]%>
+                        <tr>
+                            <th scope="row">
+                                <%= teacher.name%>
+                            </th>
+                            <td>
+                                <%= teacher.title %>
+                            </td>
+                            <td>
+                                <a href="/images/<%= teacher.image %>">
+                                    <img src="/images/<%= teacher.image %>" alt="" style="width: 30px;">
+                                </a>
+
+                            </td>
+                            <td>
+                                <form action="/admin/delete-teacher" class="d-inline" method="POST">
+                                    <input type="hidden" name="id" value="<%= teacher.id %>">
+                                    <button class="btn btn-warning deleteBtn" type="submit"
+                                        onclick="return showConfirm()"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                                <button type="button" class="btn btn-warning"
+                                    onclick="editTeacherModal(`<%=teacher.id%>`, `<%= teacher.name%>`, `<%= teacher.title%>`)"
+                                    data-toggle="modal" data-target="#exampleTeacherModel<%= teacher.id %>">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+
+            <!-- Modal Area Starts -->
+            <div class="modalArea">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">শিক্ষক যুক্ত করুন</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/admin/add-teacher" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">শিক্ষক এর নাম</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="নাম" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">পদবী</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                            placeholder="পদবী" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">শিক্ষক এর ছবি</label>
+                                        <input type="file" class="form-control-file" id="exampleInputPassword1"
+                                            placeholder="Password" name="image">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">শিক্ষক যুক্ত করুন</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modalAreaEdit">
+
+            </div>
+            <!-- Modal Area Ends -->
+            <%- include('../includes/sidebar-end')%>

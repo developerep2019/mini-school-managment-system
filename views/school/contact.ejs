@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<%- include('../includes/head') %>
+
+    <body>
+
+        <!--====== PRELOADER PART START ======-->
+        <%- include('../includes/preloader') %>
+            <!--====== PRELOADER PART START ======-->
+
+            <!--====== HEADER PART START ======-->
+            <%- include('../includes/navigation') %>
+
+                <!--====== HEADER PART ENDS ======-->
+
+                <!--====== SEARCH BOX PART START ======-->
+
+                <div class="search-box">
+                    <div class="serach-form">
+                        <div class="closebtn">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <form action="#">
+                            <input type="text" placeholder="Search by keyword">
+                            <button><i class="fa fa-search"></i></button>
+                        </form>
+                    </div> <!-- serach form -->
+                </div>
+
+                <!--====== SEARCH BOX PART ENDS ======-->
+
+                <!--====== PAGE BANNER PART START ======-->
+
+                <section id="page-banner" class="pt-105 pb-130 bg_cover" data-overlay="8"
+                    style="background-image: url(images/page-banner-6.jpg)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="page-banner-cont">
+                                    <h2>যোগাযোগ</h2>
+                                    <nav aria-label="breadcrumb">
+                                    </nav>
+                                </div> <!-- page banner cont -->
+                            </div>
+                        </div> <!-- row -->
+                    </div> <!-- container -->
+                </section>
+
+                <!--====== PAGE BANNER PART ENDS ======-->
+
+                <!--====== CONTACT PART START ======-->
+
+                <section id="contact-page" class="pt-90 pb-120 gray-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="contact-from mt-30">
+                                    <div class="section-title">
+                                        <h5>Contact Us</h5>
+                                        <h2>Keep in touch</h2>
+                                    </div> <!-- section title -->
+                                    <div class="main-form pt-45">
+                                        <form id="contact-form" action="/contact-us" method="POST"
+                                            data-toggle="validator">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="singel-form form-group">
+                                                        <input name="name" type="text" placeholder="Your name"
+                                                            data-error="Name is required." required="required">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div> <!-- singel form -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="singel-form form-group">
+                                                        <input name="email" type="email" placeholder="Email"
+                                                            data-error="Valid email is required." required="required">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div> <!-- singel form -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="singel-form form-group">
+                                                        <input name="subject" type="text" placeholder="Subject"
+                                                            data-error="Subject is required." required="required">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div> <!-- singel form -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="singel-form form-group">
+                                                        <input name="phone" type="text" placeholder="Phone"
+                                                            data-error="Phone is required." required="required">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div> <!-- singel form -->
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="singel-form form-group">
+                                                        <textarea name="message" placeholder="Message"
+                                                            data-error="Please,leave us a message."
+                                                            required="required"></textarea>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div> <!-- singel form -->
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <% if(flash) {%>
+                                                        <div
+                                                            class="alert alert-<%= flash.type === 'success' ? 'success' : 'danger' %>">
+                                                            <%= flash.message %>
+                                                        </div>
+                                                        <% } %>
+                                                            <div class="singel-form">
+                                                                <button type="submit" class="main-btn">Send</button>
+                                                            </div> <!-- singel form -->
+                                                </div>
+                                            </div> <!-- row -->
+                                        </form>
+                                    </div> <!-- main form -->
+                                </div> <!--  contact from -->
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="contact-address mt-30">
+                                    <ul>
+                                        <li>
+                                            <div class="singel-address">
+                                                <div class="icon">
+                                                    <i class="fa fa-home"></i>
+                                                </div>
+                                                <div class="cont">
+                                                    <p>তেঁতুলিয়া মডেল থানার বিপরীত পাশে, মমিনপাড়া, তেঁতুলিয়া, পঞ্চগড়
+                                                    </p>
+                                                </div>
+                                            </div> <!-- singel address -->
+                                        </li>
+                                        <li>
+                                            <div class="singel-address">
+                                                <div class="icon">
+                                                    <i class="fa fa-phone"></i>
+                                                </div>
+                                                <div class="cont">
+                                                    <p>+880 173 499 6840</p>
+                                                    <p>+880 173 499 6840</p>
+                                                </div>
+                                            </div> <!-- singel address -->
+                                        </li>
+                                        <li>
+                                            <div class="singel-address">
+                                                <div class="icon">
+                                                    <i class="fa fa-envelope-o"></i>
+                                                </div>
+                                                <div class="cont">
+                                                    <p>tetuliamodel8625@gmail.com</p>
+                                                    <p>tetuliamodel8625@gmail.com</p>
+                                                </div>
+                                            </div> <!-- singel address -->
+                                        </li>
+                                    </ul>
+                                </div> <!-- contact address -->
+                                <div class="mt-30">
+                                    <div id="customMap" class="d-flex align-items-center justify-content-center">
+                                        <iframe id="googleMapContact" class="d-flex"
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.6963451935744!2d88.33712291541978!3d26.49772018420981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e459f3f1a65f5f%3A0xe19a2248262151f!2sTetulia%20Govt.%20Pilot%20Model%20High%20School!5e0!3m2!1sen!2sbd!4v1621760535289!5m2!1sen!2sbd"
+                                            width="600" height="450" style="border:0;" allowfullscreen=""
+                                            loading="lazy"></iframe>
+                                        <!-- <h1>Hello</h1> -->
+                                    </div>
+                                </div>
+                            </div> <!-- map -->
+                        </div>
+                    </div> <!-- row -->
+                    </div> <!-- container -->
+                </section>
+
+                <!--====== CONTACT PART ENDS ======-->
+
+                <!--====== FOOTER PART START ======-->
+                <%- include('../includes/footer') %>
+                    <!--====== FOOTER PART ENDS ======-->
+
+                    <!--====== BACK TO TOP PART START ======-->
+                    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+                    <!--====== BACK TO TOP PART ENDS ======-->
+    </body>
+    <%- include('../includes/scripts') %>
+
+</html>

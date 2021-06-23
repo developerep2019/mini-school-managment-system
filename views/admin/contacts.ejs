@@ -1,0 +1,70 @@
+<%- include('../includes/sidebar-start') %>
+    <!-- Main Content Starts Here -->
+    <div class="table-responsive">
+        <% if(flash) {%>
+            <div class="alert alert-<%= flash.type === 'success' ? 'success' : 'error' %> raiseFont" role="alert">
+                <%= flash.message %>
+            </div>
+            <% } %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</i></th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Mesaage</th>
+                            <th scope="col">Contact Info</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i < contacts.length; i++) { const contact=contacts[i];%>
+                            <tr>
+                                <td>
+                                    <%= contact.name%>
+                                </td>
+                                <td>
+                                    <%= contact.subject %>
+                                </td>
+                                <td>
+                                    <a href="#" data-target="#modal<%= contact.id %>" data-toggle="modal"
+                                        onclick="showModal(`<%= contact.id %>` ,`<%= contact.name %>`, `<%= contact.message %>`)"
+                                        class="main-a">View
+                                        Msg</a>
+                                </td>
+                                <td>
+                                    <a type="button" href="#" data-toggle="modal"
+                                        data-target="#addtional<%= contact.id %>"
+                                        onclick="additionalModal(`<%= contact.id %>` ,`<%= contact.email %>`, `<%= contact.phone %>`, `<%= contact.createdAt %>`, `<%= contact.name %>`)"
+                                        class="main-a">
+                                        Contact Info
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="/admin/delete-contact" method="POST">
+                                        <input type="hidden" name="id" value="<%= contact.id %>">
+                                        <button type="submit" class="main-btn" onclick=" return showConfirm()"><i
+                                                class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+    </div>
+    <div class="paginationArea">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/admin/contacts?page=0">1</a></li>
+                <% for(let i=1; i <=pageNum; i++) {%>
+                    <li class="page-item"><a class="page-link" href="/admin/contacts?page=<%= i === 0 ? 0 : i %>">
+                            <%= i +1%>
+                        </a></li>
+                    <% }%>
+            </ul>
+        </nav>
+    </div>
+    <div id="modalArea">
+
+    </div>
+    </div>
+    <%- include('../includes/sidebar-end') %>

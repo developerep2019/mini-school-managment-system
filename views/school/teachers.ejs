@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<%- include('../includes/head') %>
+
+    <body>
+
+        <!--====== PRELOADER PART START ======-->
+        <%- include('../includes/preloader') %>
+            <!--====== PRELOADER PART START ======-->
+
+            <!--====== HEADER PART START ======-->
+            <%- include('../includes/navigation') %>
+                <!--====== HEADER PART ENDS ======-->
+
+
+                <!--====== PAGE BANNER PART START ======-->
+
+                <section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8"
+                    style="background-image: url(images/page-banner-3.jpg)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="page-banner-cont">
+                                    <h2>শিক্ষকমণ্ডলী</h2>
+                                </div> <!-- page banner cont -->
+                            </div>
+                        </div> <!-- row -->
+                    </div> <!-- container -->
+                </section>
+
+                <!--====== PAGE BANNER PART ENDS ======-->
+
+                <!--====== TEACHERS PART START ======-->
+
+                <section id="teachers-page" class="pt-90 pb-120 gray-bg">
+                    <div class="container">
+                        <div class="row">
+                            <% for(let i=0; i < teachers.length; i++) { const teacher=teachers[i]%>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="singel-teachers mt-30 text-center">
+                                        <div class="image">
+                                            <img src="/images/<%= teacher.image %>" alt="Teachers" class="img-fluid">
+                                        </div>
+                                        <div class="cont">
+                                            <a href="#">
+                                                <h6>
+                                                    <%= teacher.name%>
+                                                </h6>
+                                            </a>
+                                            <span>
+                                                <%= teacher.title %>
+                                            </span>
+                                        </div>
+                                    </div> <!-- singel teachers -->
+                                </div>
+                                <% } %>
+                        </div> <!-- row -->
+                    </div> <!-- container -->
+                </section>
+                <!--====== TEACHERS PART ENDS ======-->
+
+                <!--====== FOOTER PART START ======-->
+                <%- include('../includes/footer') %>
+                    <!--====== FOOTER PART ENDS ======-->
+
+                    <!--====== BACK TO TP PART START ======-->
+                    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+                    <!--====== BACK TO TP PART ENDS ======-->
+                    <%- include('../includes/scripts') %>
+
+    </body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Headers Start-->
+<%- include('../includes/head')%>
+    <!--Headers End-->
+
+    <body onload="loadData(<%=nextNotices%>)">
+        <!-- Preloader Starts Here -->
+        <%- include('../includes/preloader') %>
+            <!-- Preloader Ends Here -->
+
+            <!-- Navigation Starts Here -->
+            <%- include('../includes/navigation') %>
+                <!-- Navigation Ends Here -->
+                <!-- Page Banner Starts here -->
+                <section id="page-banner" class="pt-105 pb-130 bg_cover" data-overlay="8"
+                    style="background-image: url(/images/notice-banner.jpg)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="page-banner-cont">
+                                    <h2>নোটিশসমূহ</h2>
+                                    <nav aria-label="breadcrumb">
+                                    </nav>
+                                </div> <!-- page banner cont -->
+                            </div>
+                        </div> <!-- row -->
+                    </div> <!-- container -->
+                </section>
+                <!-- Page Banner Ends Here -->
+                <!-- Main Content Starts Here -->
+                <div class="pt-90 pb-120 gray-bg">
+                    <div class="container">
+                        <% if(notices===0) {%>
+                            <div class="alert alert-danger text-center" role="alert">
+                                দুঃখিত এই পেজ এ কোনো নোটিশ নেই
+                            </div>
+                            <% } else {%>
+                                <table class="table table-bordered mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">প্রসঙ্গ</th>
+                                            <th scope="col">ডাউনলোড</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let i=0; i <notices.length; i++) { const notice=notices[i]%>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%=`${notice.createdAt.getDate()}-${notice.createdAt.getMonth() +
+                                                        1}-${notice.createdAt.getFullYear()}`%>
+                                                </th>
+                                                <td>
+                                                    <%= notice.title %>
+                                                </td>
+                                                <td>
+                                                    <a href="/notice/<%= notice.file %>">
+                                                        <img src="/images/pdf.png" alt="" style="width: 30px;">
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                                <% } %>
+                                    <div class="paginationArea">
+                                        <nav aria-label="...">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link previous"
+                                                        onclick="dynamicPrevious()">Previous</a></li>
+                                                <li class="page-item"><a class="page-link" href="/notices?page=0">1</a>
+                                                </li>
+                                                <% for(let i=1; i <=pageNum; i++) {%>
+                                                    <li class="page-item"><a class="page-link"
+                                                            href="/notices?page=<%= i === 0 ? 0 : i %>">
+                                                            <%= i +1%>
+                                                        </a></li>
+                                                    <% }%>
+                                                        <li class="page-item"><a class="page-link next">Next</a>
+                                                        </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                    </div>
+                </div>
+                <!-- Main Content Ends Here -->
+                <%- include('../includes/footer') %>
+
+                    <!-- Back to top part starts here  -->
+                    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+                    <!-- Back to top part ends here -->
+    </body>
+
+    <%- include('../includes/scripts') %>
+
+</html>
